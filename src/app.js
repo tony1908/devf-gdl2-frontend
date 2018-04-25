@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
+import MyComponent from './components/login/FacebookLogin';
 
+class App extends Component {
 
-class App extends Component{
-
- render(){
+ render() {
    return (
-   <div>
-      
-
-    </div>
+      <div>
+          <MyComponent/>
+      </div>
    )
 
  }
