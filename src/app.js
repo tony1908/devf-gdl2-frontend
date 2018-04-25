@@ -7,22 +7,22 @@ import {
   Redirect
 } from 'react-router-dom'
 
-import Logout from './components/home/logout/container/Logout.js';
 import Login from './components/login/container/Login.js';
+import Logout from './components/home/logout/container/Logout.js';
+import VideoCards from './components/home/videoCards/container/VideoCards.js';
+import Register from './components/register/container/Register.js';
 
 class App extends Component{
+
 
  render(){
    return (
     <Router>
       <div>
-      <ul>
-        <li><Link to="/logout">Logout</Link></li>
-        <li><Link to="/login">Login</Link></li>
-      </ul> 
-
-      <Route path="/logout" component={Logout} />
-      <Route path="/login" component={Login} />
+      <Route path="/" exact={true} component={Login} />
+      <Route path="/home" exact={true} component={VideoCards} />
+      <Route path="/logout" exact={true} component={Logout} />
+      <Route path="/register" exact={true} component={Register} />
       </div>
     </Router>
    )
