@@ -7,7 +7,7 @@ import { HttpLink} from 'apollo-link-http';
 import { InMemoryCache} from 'apollo-cache-inmemory';
 
 const httpLink = new HttpLink({
-    uri: ""
+    uri: "https://backend-netflix-copy.herokuapp.com/graphql"
 });
 
 const client = new ApolloClient({
