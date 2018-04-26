@@ -14,7 +14,9 @@ class MyComponent extends Component {
   render() {
 
     return (
-      <div>
+
+      <div> AVE MARIAAAAAAA!!!!</div>
+    /*  <div>
         <FacebookLogin
         appId="121582495367066"
         autoLoad={true}
@@ -22,7 +24,7 @@ class MyComponent extends Component {
         onClick={this.componentClicked}
         callback={this.responseFacebook} 
       />
-      </div>
+      </div>*/
     )
   }
 
