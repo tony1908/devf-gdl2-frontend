@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import FormErrors from '../../../helpers/FormErrors.js'
+import { graphql, compose } from 'react-apollo'
+import gql from 'graphql-tag'
 
 class Register extends React.Component {
     constructor(props) {
@@ -31,11 +33,24 @@ class Register extends React.Component {
 
     handleSubmit(e){
         e.preventDefault();
+        
         this.setState({ submitted: true });
         const { userName, email, password } = this.state;
-        if (userName && email && password) {
-            this.props.history.push('/home')
-        }
+        
+        this.props.signupMutation({
+            variables: { us: {
+                username: userName,
+                email: email,
+                password: password
+              }
+            }
+          })
+            .then(({ data }) => {
+              console.log('got data', data);
+            }).catch((error) => {
+              console.log('there was an error sending the query', error);
+            });
+
     };
 
     validateField(fieldName, value) {  
@@ -71,8 +86,6 @@ class Register extends React.Component {
         }
 
     render() {
-
-        const { registering  } = this.props;
         const { userName, email, password, submitted } = this.state;
         this.handleSubmit = this.handleSubmit.bind(this);   
 
@@ -114,5 +127,16 @@ class Register extends React.Component {
     }
 }
 
+const SIGNUP_MUTATION= gql`
+mutation User ($us: userInput!) {
+  User(user:$us) {
+        username,
+        email,
+        password
+    }
+}
+`
 
-export default Register;
+export default compose(
+    graphql(SIGNUP_MUTATION, { name: 'signupMutation' }),
+  )(Register)

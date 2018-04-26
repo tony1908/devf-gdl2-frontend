@@ -89,6 +89,7 @@ class Login extends React.Component {
                     <div className="form-group">
                         <button className="btn btn-primary">Login</button>
                         <Link to="/register" className="btn btn-link">Register</Link>
+                        <Link to="/videoplayer" className="btn btn-link">Video Players</Link>
                     </div>
                 </form>
                 <div className="panel panel-default">
