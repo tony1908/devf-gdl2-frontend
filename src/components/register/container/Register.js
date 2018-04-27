@@ -17,7 +17,8 @@ class Register extends React.Component {
             emailValid: false,
             passwordValid: false,
             formValid: false,
-            submitted: false
+            submitted: false,
+            errorMessage: ''
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -36,7 +37,7 @@ class Register extends React.Component {
         
         this.setState({ submitted: true });
         const { userName, email, password } = this.state;
-        
+        if (email && password && userName) {
         this.props.signupMutation({
             variables: { us: {
                 username: userName,
@@ -46,10 +47,14 @@ class Register extends React.Component {
             }
           })
             .then(({ data }) => {
-              console.log('got data', data);
+                this.props.history.push('/home')
+                console.log('got data', data);
             }).catch((error) => {
-              console.log('there was an error sending the query', error);
+                debugger
+                console.log('there was an error sending the query', error);
+                this.setState( { errorMessage: error.message } );
             });
+        }
 
     };
 
@@ -58,6 +63,7 @@ class Register extends React.Component {
         let userNameValid = this.state.userNameValid;
         let emailValid = this.state.emailValid;
         let passwordValid = this.state.passwordValid;
+        let errorMessage = this.state.errorMessage;
       
           switch(fieldName) {
             case 'userName':
@@ -86,7 +92,7 @@ class Register extends React.Component {
         }
 
     render() {
-        const { userName, email, password, submitted } = this.state;
+        const { userName, email, password, submitted, errorMessage } = this.state;
         this.handleSubmit = this.handleSubmit.bind(this);   
 
         return (
@@ -119,6 +125,9 @@ class Register extends React.Component {
                         <Link to="/" className="btn btn-link">Cancel</Link>
                     </div>
                 </form>
+                {submitted && !errorMessage &&
+                            <div className="help-block">Error {errorMessage}</div>
+                }
                 <div className="panel panel-default">
                     <FormErrors formErrors={this.state.formErrors} />
                 </div>

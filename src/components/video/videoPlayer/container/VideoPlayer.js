@@ -2,29 +2,26 @@ import React, { Component } from 'react'
 import { TextField, Button } from 'material-ui'
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
+import { Query } from 'react-apollo';
 
 
 class VideoPlayer extends Component {
     render() {
 
-        if (this.props.data.loading) {
-            return (<div>Loading</div>)
-          }
-        
-          if (this.props.data.error) {
-            console.log(this.props.data.error)
-            return (<div>An unexpected error occurred</div>)
-          }
-
-        if (!this.props.data.loading) {
-            return (
-                <div>
-                  <Title>
-                    Hey {this.props.Users.username}
-                  </Title>
-                </div>
-              )
-        }
+      return (
+        <Query query={FEED_QUERY}>
+          {({ loading, error, data }) => {
+            if (loading) return <p>Loading...</p>;
+            if (error) return <p>Error :( </p>;
+  
+            return data.Users.map(({ username, email, id }) => (
+              <div key={id}>
+                <p>{`${username}: ${email}`}</p>
+              </div>
+            ));
+          }}
+        </Query>
+      );
     
     }
 }
@@ -41,4 +38,4 @@ const FEED_QUERY = gql`
   }
 `
 
-export default graphql(FEED_QUERY)(VideoPlayer)
+export default VideoPlayer;
