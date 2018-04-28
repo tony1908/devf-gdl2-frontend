@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 import FacebookLogin from 'react-facebook-login';
  
-class MyComponent extends Component {
+class FBLogin extends Component {
    
   responseFacebook(response) {
+    //get facebook object with user data needed to send to the backend through Graph QL mutation
     console.log(response);
   }
 
-  componentClicked() {
-    console.log("click")
+  componentClicked(){
+      console.log("Facebook button clicked");
   }
 
   render() {
 
     return (
 
-      <div> AVE MARIAAAAAAA!!!!</div>
-    /*  <div>
+      <div>
         <FacebookLogin
         appId="121582495367066"
         autoLoad={true}
@@ -24,10 +24,10 @@ class MyComponent extends Component {
         onClick={this.componentClicked}
         callback={this.responseFacebook} 
       />
-      </div>*/
+      </div>
     )
   }
 
 }
 
-export default MyComponent;
+export default FBLogin;

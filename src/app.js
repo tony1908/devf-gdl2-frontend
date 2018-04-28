@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MyComponent from './components/login/FacebookLogin';
+import FBLogin from './components/login/FacebookLogin.js';
 import Login from './components/login/container/Login.js'
 
 class App extends Component {
@@ -7,7 +7,7 @@ class App extends Component {
  render() {
    return (
       <div>
-        <Login/>
+        <FBLogin/>
       </div>
     
    )
