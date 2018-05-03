@@ -92,6 +92,7 @@ class Login extends React.Component {
                         <Link to="/forgotpassword" className="btn btn-link">Forgot Password</Link>
                         <Link to="/videoplayer" className="btn btn-link">Video Players</Link>
                         <Link to="/uploader" className="btn btn-link">Uploader</Link>
+                        <Link to="/readfiles" className="btn btn-link">Read Audio Files</Link>
                     </div>
                 </form>
                 <div className="panel panel-default">

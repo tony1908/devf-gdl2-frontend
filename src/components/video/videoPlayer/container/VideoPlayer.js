@@ -1,13 +1,25 @@
 import React, { Component } from 'react'
 import { Player } from 'video-react';
+import audioFiles from './ReadFiles.js';
+
+
 
 class VideoPlayer extends Component {
+
+   componentWillMount() {
+     console.log(this.props);
+   }
+
     render() {
+    ;
+
       return (
-        <Player
-          playsInline
-          src="https://res.cloudinary.com/devapps404/video/upload/v1525135053/ES_882_01_01_XR25R.mp4"
-       />
+         //<span>{this.props.match.params.value}</span>
+         <Player
+           playsInline
+           src= { decodeURIComponent(this.props.match.params.value) }
+          
+        />
       );
     }
 }
